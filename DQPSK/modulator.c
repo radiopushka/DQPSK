@@ -333,7 +333,7 @@ int run_dqpsk_mod_IQ(struct dqpsk_mod* dqpsk,short* audio,int size,float offset,
         if(dqpsk->count >= dqpsk->dcount_max){
             if(!done){
                 int datav = *(dqpsk->d_index);
-                datav=datav>>(7-dqpsk->bit_count);
+                datav=datav>>(6-dqpsk->bit_count);
                 int cmpr = 3&datav;
                 switch(cmpr){
                     case 1:
@@ -349,7 +349,7 @@ int run_dqpsk_mod_IQ(struct dqpsk_mod* dqpsk,short* audio,int size,float offset,
                 }
 
 
-                dqpsk->bit_count=dqpsk->bit_count+2;
+                dqpsk->bit_count+=2;
             }
             if(dqpsk->bit_count >= 8){
                 dqpsk->bit_count = 0;
